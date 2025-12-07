@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A. Yuvasri | Portfolio</title>
+  <style>
+    /* ---------- Global Styles ---------- */
+    :root {
+      --bg-dark: #050816;
+      --bg-light: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: #1d4ed8;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --card-bg: #0b1220;
+      --border-soft: #1f2937;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --radius-xl: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0%, #020617 55%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ---------- Navbar ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.7),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: white;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .brand-text span:first-child {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-text span:last-child {
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #38bdf8, #a855f7);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 3rem;
+      align-items: center;
+      padding-top: 2.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.1);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      color: #a5f3fc;
+      font-size: 0.72rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.65);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 2.8rem);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(120deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub strong {
+      color: #e5e7eb;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .tag {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      color: white;
+      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 40px rgba(56, 189, 248, 0.5);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    /* Hero right */
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1d4ed8, #020617 55%);
+      border-radius: 24px;
+      padding: 1.3rem 1.2rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      position: relative;
+      overflow: hidden;
+      min-height: 245px;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at top,
+        rgba(56, 189, 248, 0.2),
+        transparent 55%
+      );
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: #93c5fd;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-role {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-meta {
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-pill {
+      font-size: 0.72rem;
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(129, 140, 248, 0.7);
+    }
+
+    .hero-progress {
+      margin-top: 0.4rem;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #e5e7eb;
+      margin-bottom: 0.2rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 65%;
+      background: linear-gradient(90deg, #22c55e, #a3e635);
+    }
+
+    .floating-badge {
+      position: absolute;
+      right: 8px;
+      bottom: 10px;
+      font-size: 0.7rem;
+      padding: 0.28rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 1.4rem 0 0.4rem;
+    }
+
+    .section-heading {
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      padding: 1rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .card-tagline {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: #020617;
+      border: 1px solid rgba(75, 85, 99, 0.8);
+      color: var(--text-muted);
+    }
+
+    .timeline {
+      border-left: 1px dashed rgba(75, 85, 99, 0.9);
+      padding-left: 1rem;
+      margin-top: 0.4rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-title {
+      font-size: 0.85rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact {
+      margin-top: 1.8rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .contact-list {
+      list-style: none;
+      font-size: 0.85rem;
+    }
+
+    .contact-list li + li {
+      margin-top: 0.25rem;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      color: #bfdbfe;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 2rem;
+      padding-top: 0.8rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-right {
+        order: -1;
+      }
+      .contact-grid,
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .wrapper {
+        padding: 0 1rem 3rem;
+      }
+      .hero {
+        padding-top: 1.6rem;
+        gap: 1.8rem;
+      }
+    }
+
+    /* Simple inputs for contact form */
+    .input,
+    .textarea {
+      width: 100%;
+      padding: 0.4rem 0.55rem;
+      border-radius: 8px;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 0.85rem;
+    }
+
+    .textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ---------- NAVBAR ---------- -->
+  <header>
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">Y</div>
+        <div class="brand-text">
+          <span>A. Yuvasri</span>
+          <span>Beginner Developer</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrapper">
+    <!-- ---------- HERO ---------- -->
+    <section class="hero" id="top">
+      <div>
+        <div class="chip">
+          <span class="chip-dot"></span>
+          Aspiring IT Professional
+        </div>
+        <h1>
+          Hi, I'm <span>A. Yuvasri</span><br />
+          a beginner coder building AI, web development
+        </h1>
+        <p class="hero-sub">
+          I work with <strong>Python, C, HTML and CSS</strong>, 
+          </strong> My goal is to start my career in the IT industry as a
+          software developer and keep growing my skills step by step.
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag">Python &amp; C Programming</span>
+          <span class="tag">HTML &amp; CSS</span>
+          <span class="tag">AI &amp; ML Concepts</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View My Projects</a>
+          <a href="#contact" class="btn-ghost">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-card-inner">
+            <p class="hero-label">Profile snapshot</p>
+            <p class="hero-role">Beginner Developer</p>
+            <p class="hero-meta">
+              Building projects in AI, web, and sustainability while learning core CS fundamentals.
+            </p>
+
+            <div class="hero-stats">
+              <span class="stat-pill">Python • C</span>
+              <span class="stat-pill">HTML • CSS</span>
+            </div>
+
+            <div class="hero-progress">
+              <div class="progress-label">
+                <span>Learning Journey</span>
+                <span>65%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+          <div class="floating-badge">
+            Goal: Get a job in IT 🚀
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- ABOUT ---------- -->
+    <section id="about">
+      <p class="section-sub">ABOUT</p>
+      <h2 class="section-heading">Who I am</h2>
+      <p style="font-size: 0.9rem; color: var(--text-muted); max-width: 45rem;">
+        I'm a Computer Science engineering student and a beginner in software development.
+        I enjoy understanding how things work, writing simple programs, and slowly
+        converting ideas into working code. I’m learning
+        <strong>Python, C, HTML and CSS</strong>, and I’ve started working on
+        projects related to <strong>AI-powered agriculture</strong> and
+        <strong>gamified environmental education</strong>. My next step is to
+        contribute to real-world IT projects and grow into a professional developer.
+      </p>
+    </section>
+
+    <!-- ---------- SKILLS ---------- -->
+    <section id="skills">
+      <p class="section-sub">SKILLS</p>
+      <h2 class="section-heading">What I work with</h2>
+
+      <div class="section-grid" style="margin-top: 0.6rem;">
+        <!-- Programming -->
+        <div class="card">
+          <h3 class="card-title">Programming</h3>
+          <p class="card-tagline">Writing logic and solving basic problems.</p>
+          <ul style="font-size: 0.85rem; margin-left: 1rem; color: var(--text-muted);">
+            <li>Python – scripts, loops, functions, basic file handling</li>
+            <li>C – basic programs, arrays, functions, pointers (beginner)</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">C</span>
+            <span class="pill">Problem Solving</span>
+          </div>
+        </div>
+
+        <!-- Web -->
+        <div class="card">
+          <h3 class="card-title">Web Basics</h3>
+          <p class="card-tagline">Creating simple static web pages.</p>
+          <ul style="font-size: 0.85rem; margin-left: 1rem; color: var(--text-muted);">
+            <li>HTML – structure of pages, headings, lists, forms</li>
+            <li>CSS – layouts, colors, fonts, basic responsive design</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">Responsive Layouts</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- PROJECTS ---------- -->
+    <section id="projects">
+      <p class="section-sub">PROJECTS</p>
+      <h2 class="section-heading">What I'm building</h2>
+
+      <div class="section-grid" style="margin-top: 0.6rem;">
+        <!-- Project 1: SIH AI Crop Yield -->
+        <div class="card">
+          <h3 class="card-title">AI-Powered Crop Yield Prediction &amp; Optimization (SIH)</h3>
+          <p class="card-tagline">
+            Smart India Hackathon idea – Quantum Leap team.
+          </p>
+          <ul style="font-size: 0.85rem; margin-left: 1rem; color: var(--text-muted);">
+            <li>AI-powered system to predict crop yield and optimize inputs.</li>
+            <li>Uses soil, weather, satellite and IoT sensor data for insights.</li>
+            <li>Recommends crops, fertilizer, irrigation and alerts for pests/diseases.</li>
+            <li>Mobile &amp; web dashboard with multi-language and voice support.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">AI &amp; ML Concept</span>
+            <span class="pill">IoT Data</span>
+            <span class="pill">Agriculture Tech</span>
+          </div>
+        </div>
+
+        <!-- Project 2: AI Yield Hackathon -->
+        <div class="card">
+          <h3 class="card-title">AI Yield Prediction &amp; Optimization – Hackathon</h3>
+          <p class="card-tagline">
+            Technical prototype version for yield prediction and resource planning.
+          </p>
+          <ul style="font-size: 0.85rem; margin-left: 1rem; color: var(--text-muted);">
+            <li>Uses ML models like Random Forest / XGBoost for yield prediction.</li>
+            <li>LSTM models for time series (weather &amp; historical data).</li>
+            <li>Optimization engine suggests irrigation &amp; fertilizer strategies.</li>
+            <li>Explainable AI (e.g., SHAP/LIME) to make recommendations transparent.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Python (ML)</span>
+            <span class="pill">Time Series</span>
+            <span class="pill">Explainable AI</span>
+          </div>
+        </div>
+
+        <!-- Project 3: EcoQuest -->
+        <div class="card">
+          <h3 class="card-title">EcoQuest – Gamified Environmental Education</h3>
+          <p class="card-tagline">
+            Hackathon project: teaching sustainability through a gamified platform.
+          </p>
+          <ul style="font-size: 0.85rem; margin-left: 1rem; color: var(--text-muted);">
+            <li>Gamified app with eco-missions, points, badges and eco-pets.</li>
+            <li>Uses AI-powered camera to verify eco-actions (like recycling).</li>
+            <li>AR-based lessons, carbon footprint tracker and live quiz battles.</li>
+            <li>Planned MERN stack + AI + Blockchain badges for student rewards.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">MERN Concept</span>
+            <span class="pill">AI &amp; AR</span>
+            <span class="pill">Gamification</span>
+          </div>
+        </div>
+
+        <!-- Project 4: Portfolio Website itself -->
+        <div class="card">
+          <h3 class="card-title">Personal Portfolio Website</h3>
+          <p class="card-tagline">
+            This site – built to present my skills, projects and learning.
+          </p>
+          <ul style="font-size: 0.85rem; margin-left: 1rem; color: var(--text-muted);">
+            <li>Single-page responsive layout written in HTML &amp; CSS.</li>
+            <li>Clean sections for About, Skills, Projects and Contact.</li>
+            <li>Designed to be extendable with a Python Flask backend.</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">Responsive Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- CONTACT ---------- -->
+    <section id="contact" class="contact">
+      <p class="section-sub">CONTACT</p>
+      <h2 class="section-heading">Let's connect</h2>
+
+      <div class="contact-grid">
+        <div>
+          <span class="badge">Open to IT job opportunities</span>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem;">
+            I'm looking for entry-level roles or internships in IT where I can grow as a developer,
+            work on real projects, and keep improving my coding skills in Python, C, web development,
+            AI.
+          </p>
+        </div>
+
+        <div>
+          <!-- Static contact form (works with mailto, or can be wired to Flask backend) -->
+          <form
+            action="mailto:your.email@example.com"
+            method="POST"
+            enctype="text/plain"
+            style="display: grid; gap: 0.5rem; font-size: 0.85rem;"
+          >
+            <div>
+              <label for="name"><strong>Name</strong></label><br />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your full name"
+                required
+                class="input"
+              />
+            </div>
+
+            <div>
+              <label for="email"><strong>Email</strong></label><br />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+                class="input"
+              />
+            </div>
+
+            <div>
+              <label for="message"><strong>Message</strong></label><br />
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Write your message here..."
+                required
+                class="textarea"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="btn-primary"
+              style="border: none; width: fit-content;"
+            >
+              Send Message
+            </button>
+          </form>
+
+          <ul class="contact-list" style="margin-top: 0.7rem;">
+            <li><strong>Name:</strong> A. Yuvasri</li>
+            <li><strong>Email:</strong>yuvasridevayuvasrideva.com</li>
+            <li><strong>Phone:</strong> +91-9786991117</li>
+            <li><strong>Location:</strong> India</li>
+            <li>
+  <strong>GitHub:</strong>
+  <a href="https://share.google/hRPmPrpuUVQNYXdHy"
+     target="_blank" rel="noopener noreferrer">
+     github.com/https://share.google/hRPmPrpuUVQNYXdHy
+  </a>
+</li>
+
+<li>
+  <strong>LinkedIn:</strong>
+  <a href="https://www.linkedin.com/in/yuvasri-a-090140381?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+     target="_blank" rel="noopener noreferrer">
+     linkedin.com/https://www.linkedin.com/in/yuvasri-a-090140381?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
+  </a>
+</li>
+
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> A. Yuvasri · Built with Python, C, HTML &amp; CSS.
+    </footer>
+  </main>
+
+  <script>
+    // Keep year updated
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
